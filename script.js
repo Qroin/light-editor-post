@@ -26,6 +26,13 @@ document.addEventListener('DOMContentLoaded', () => {
     updatePageNumbers();
 });
 
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('active');
+}
+
 // Add Dynamic Header Item
 function addHeaderItem() {
     const container = document.getElementById('headerContainer');

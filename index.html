@@ -12,7 +12,9 @@
 </head>
 
 <body>
-    <aside class="sidebar">
+    <button class="sidebar-toggle" id="sidebarToggle" title="설정 열기/닫기">☰</button>
+    <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+    <aside class="sidebar" id="sidebar">
         <h2>환경 설정</h2>
         <div class="control-group">
             <label>페이지 상하 패딩 (mm)</label>
