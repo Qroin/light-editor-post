@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official Letter Editor -Simplified</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+KR:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <aside class="sidebar">
+        <h2>환경 설정</h2>
+        <div class="control-group">
+            <label>페이지 상하 패딩 (mm)</label>
+            <div class="control-input">
+                <input type="range" id="pagePaddingY" min="0" max="100" value="20">
+                <span class="value-display" id="pagePaddingYVal">20</span>
+            </div>
+        </div>
+        <div class="control-group">
+            <label>페이지 좌우 패딩 (mm)</label>
+            <div class="control-input">
+                <input type="range" id="pagePaddingX" min="0" max="100" value="20">
+                <span class="value-display" id="pagePaddingXVal">20</span>
+            </div>
+        </div>
+        <hr style="border: none; border-top: 1px solid var(--border-color);">
+
+        <h2>영역 제어</h2>
+        <div class="control-group">
+            <label>상단부(Header) 패딩 & 크기 & 줄간격</label>
+            <div class="control-input">
+                <input type="range" id="headerPadding" min="0" max="50" value="10">
+                <span class="value-display" id="headerPaddingVal">10</span>
+            </div>
+            <div class="control-input">
+                <input type="range" id="headerFontSize" min="8" max="24" value="13">
+                <span class="value-display" id="headerFontSizeVal">13</span>
+            </div>
+            <div class="control-input">
+                <input type="range" id="headerLineHeight" min="1" max="3" step="0.1" value="1.4">
+                <span class="value-display" id="headerLineHeightVal">1.4</span>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label>본문(Body) 패딩 & 크기 & 줄간격</label>
+            <div class="control-input">
+                <input type="range" id="bodyPadding" min="0" max="50" value="10">
+                <span class="value-display" id="bodyPaddingVal">10</span>
+            </div>
+            <div class="control-input">
+                <input type="range" id="contentFontSize" min="8" max="20" value="12">
+                <span class="value-display" id="contentFontSizeVal">12</span>
+            </div>
+            <div class="control-input">
+                <input type="range" id="contentLineHeight" min="1" max="3" step="0.1" value="1.6">
+                <span class="value-display" id="contentLineHeightVal">1.6</span>
+            </div>
+        </div>
+
+        <hr style="border: none; border-top: 1px solid var(--border-color);">
+
+        <h2>서식 도구</h2>
+        <div class="toolbar">
+            <div class="toolbar-row">
+                <button class="format-btn" onclick="formatDoc('bold')" title="굵게">B</button>
+                <button class="format-btn" onclick="formatDoc('underline')" title="밑줄">U</button>
+                <button class="format-btn" onclick="formatDoc('italic')" title="기울임">I</button>
+                <button class="format-btn" onclick="formatDoc('insertUnorderedList')" title="리스트">•</button>
+
+                <div class="toolbar-divider"></div>
+                <button class="color-btn" onclick="formatDoc('foreColor', '#000000')" style="background: #000000;"
+                    title="글자 검정"></button>
+                <button class="color-btn" onclick="formatDoc('foreColor', '#ff0000')" style="background: #ff0000;"
+                    title="글자 빨강"></button>
+                <button class="color-btn" onclick="formatDoc('foreColor', '#0000ff')" style="background: #0000ff;"
+                    title="글자 파랑"></button>
+                <button class="color-btn" onclick="formatDoc('foreColor', '#808080')" style="background: #808080;"
+                    title="글자 회색"></button>
+
+                <div class="toolbar-row" style="margin-top: 8px;">
+                    <button class="format-btn" onclick="formatDoc('justifyFull')" title="양쪽 정렬">양쪽</button>
+                    <button class="format-btn" onclick="formatDoc('justifyCenter')" title="중앙 정렬">중앙</button>
+                    <button class="format-btn" onclick="formatDoc('justifyRight')" title="우측 정렬">우측</button>
+                </div>
+                <div class="toolbar-row" style="margin-top: 8px;">
+                    <input type="number" id="tableRows" value="3" min="1" max="20"
+                        style="width: 35px; text-align: center;" title="행">
+                    <span style="font-size: 11px; color: #666;">×</span>
+                    <input type="number" id="tableCols" value="3" min="1" max="10"
+                        style="width: 35px; text-align: center;" title="열">
+                    <button class="format-btn" onclick="insertTable()"
+                        style="width: auto; padding: 0 8px; font-size: 11px; font-weight: bold;">생성</button>
+
+                    <div class="toolbar-divider"></div>
+
+                    <button class="color-btn" onclick="setCellColor('#ffffff')"
+                        style="background: #ffffff; border: 1px solid #ddd;" title="배경 흰색"></button>
+                    <button class="color-btn" onclick="setCellColor('#fff7ed')" style="background: #fff7ed;"
+                        title="배경 연주황"></button>
+                    <button class="color-btn" onclick="setCellColor('#f0fdf4')" style="background: #f0fdf4;"
+                        title="배경 연초록"></button>
+                    <button class="color-btn" onclick="setCellColor('#f1f5f9')" style="background: #f1f5f9;"
+                        title="배경 회색"></button>
+                </div>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid var(--border-color);">
+
+            <h2>항목 추가</h2>
+            <button class="tool-btn" onclick="addHeaderItem()">+ 상단부 항목 추가</button>
+            <button class="tool-btn" onclick="addBodySection()">+ 본문 섹션 추가</button>
+
+            <hr style="border: none; border-top: 1px solid var(--border-color);">
+
+            <h2>페이지 관리</h2>
+            <button class="tool-btn" onclick="addPage()">+ 페이지 추가</button>
+            <button class="tool-btn" onclick="deleteLastPage()">- 페이지 삭제</button>
+
+            <hr style="border: none; border-top: 1px solid var(--border-color);">
+
+            <h2>문서 관리</h2>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">
+                <button class="tool-btn" onclick="saveDocument()" style="margin: 0;">데이터 저장 (.json)</button>
+                <button class="tool-btn" onclick="document.getElementById('loadFile').click()" style="margin: 0;">데이터
+                    불러오기</button>
+                <input type="file" id="loadFile" accept=".json" style="display: none;" onchange="loadDocument(event)">
+                <button class="tool-btn primary" onclick="window.print()" style="margin: 12px 0 0 0;">PDF 다운로드 /
+                    인쇄</button>
+            </div>
+    </aside>
+
+    <main class="preview-container">
+        <div id="document-wrapper">
+            <div class="page" id="page-1">
+                <!-- 상단부 -->
+                <div class="header-info" id="headerContainer">
+                    <div class="info-item">
+                        <span class="info-label" contenteditable="true">문서번호</span>
+                        <div class="info-content" contenteditable="true">2026-1호</div>
+                        <div class="item-controls">
+                            <button class="move-btn" onclick="moveItemUp(this)">▲</button>
+                            <button class="move-btn" onclick="moveItemDown(this)">▼</button>
+                            <button class="delete-btn"
+                                onclick="this.closest('.info-item').remove(); updatePageNumbers();">×</button>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label" contenteditable="true">수신</span>
+                        <div class="info-content" contenteditable="true">한국 공사</div>
+                        <div class="item-controls">
+                            <button class="move-btn" onclick="moveItemUp(this)">▲</button>
+                            <button class="move-btn" onclick="moveItemDown(this)">▼</button>
+                            <button class="delete-btn"
+                                onclick="this.closest('.info-item').remove(); updatePageNumbers();">×</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 본문 -->
+                <div class="content" id="bodyContainer-1">
+                    <div class="section">
+                        <div class="section-num" contenteditable="true">1.</div>
+                        <div class="section-main">
+                            <div class="section-text" contenteditable="true">공문 내용을 입력하세요.</div>
+                        </div>
+                        <div class="item-controls">
+                            <button class="move-btn" onclick="moveItemUp(this)">▲</button>
+                            <button class="move-btn" onclick="moveItemDown(this)">▼</button>
+                            <button class="delete-btn"
+                                onclick="this.closest('.section').remove(); updatePageNumbers();">×</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- 페이지 번호 -->
+                <div class="page-footer">- 1 -</div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
