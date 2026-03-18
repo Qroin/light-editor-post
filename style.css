@@ -190,8 +190,8 @@ input[type="range"]::-webkit-slider-thumb {
 .toolbar {
     display: flex;
     flex-direction: column;
-    gap: 0;
-    padding: 8px;
+    gap: 12px;
+    padding: 12px;
     background: #f8fafc;
     border: 1px solid var(--border-color);
     border-radius: 8px;
@@ -201,7 +201,7 @@ input[type="range"]::-webkit-slider-thumb {
 .toolbar-row {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 8px;
     flex-wrap: wrap;
 }
 
@@ -528,6 +528,8 @@ input[type="range"]::-webkit-slider-thumb {
 
     /* Hide UI elements */
     .sidebar,
+    .sidebar-toggle,
+    .overlay,
     .item-controls,
     .toolbar,
     .control-group,

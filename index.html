@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Official Letter Editor -Simplified</title>
+    <title>light-editor-post</title>
     <link rel="stylesheet" href="style.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+KR:wght@400;700&display=swap"
@@ -75,7 +75,8 @@
                 <button class="format-btn" onclick="formatDoc('italic')" title="기울임">I</button>
                 <button class="format-btn" onclick="formatDoc('insertUnorderedList')" title="리스트">•</button>
 
-                <div class="toolbar-divider"></div>
+                <span style="display:inline-block; width:3px;"></span>
+
                 <button class="color-btn" onclick="formatDoc('foreColor', '#000000')" style="background: #000000;"
                     title="글자 검정"></button>
                 <button class="color-btn" onclick="formatDoc('foreColor', '#ff0000')" style="background: #ff0000;"
@@ -84,57 +85,60 @@
                     title="글자 파랑"></button>
                 <button class="color-btn" onclick="formatDoc('foreColor', '#808080')" style="background: #808080;"
                     title="글자 회색"></button>
-
-                <div class="toolbar-row" style="margin-top: 8px;">
-                    <button class="format-btn" onclick="formatDoc('justifyFull')" title="양쪽 정렬">양쪽</button>
-                    <button class="format-btn" onclick="formatDoc('justifyCenter')" title="중앙 정렬">중앙</button>
-                    <button class="format-btn" onclick="formatDoc('justifyRight')" title="우측 정렬">우측</button>
-                </div>
-                <div class="toolbar-row" style="margin-top: 8px;">
-                    <input type="number" id="tableRows" value="3" min="1" max="20"
-                        style="width: 35px; text-align: center;" title="행">
-                    <span style="font-size: 11px; color: #666;">×</span>
-                    <input type="number" id="tableCols" value="3" min="1" max="10"
-                        style="width: 35px; text-align: center;" title="열">
-                    <button class="format-btn" onclick="insertTable()"
-                        style="width: auto; padding: 0 8px; font-size: 11px; font-weight: bold;">생성</button>
-
-                    <div class="toolbar-divider"></div>
-
-                    <button class="color-btn" onclick="setCellColor('#ffffff')"
-                        style="background: #ffffff; border: 1px solid #ddd;" title="배경 흰색"></button>
-                    <button class="color-btn" onclick="setCellColor('#fff7ed')" style="background: #fff7ed;"
-                        title="배경 연주황"></button>
-                    <button class="color-btn" onclick="setCellColor('#f0fdf4')" style="background: #f0fdf4;"
-                        title="배경 연초록"></button>
-                    <button class="color-btn" onclick="setCellColor('#f1f5f9')" style="background: #f1f5f9;"
-                        title="배경 회색"></button>
-                </div>
             </div>
 
-            <hr style="border: none; border-top: 1px solid var(--border-color);">
-
-            <h2>항목 추가</h2>
-            <button class="tool-btn" onclick="addHeaderItem()">+ 상단부 항목 추가</button>
-            <button class="tool-btn" onclick="addBodySection()">+ 본문 섹션 추가</button>
-
-            <hr style="border: none; border-top: 1px solid var(--border-color);">
-
-            <h2>페이지 관리</h2>
-            <button class="tool-btn" onclick="addPage()">+ 페이지 추가</button>
-            <button class="tool-btn" onclick="deleteLastPage()">- 페이지 삭제</button>
-
-            <hr style="border: none; border-top: 1px solid var(--border-color);">
-
-            <h2>문서 관리</h2>
-            <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">
-                <button class="tool-btn" onclick="saveDocument()" style="margin: 0;">데이터 저장 (.json)</button>
-                <button class="tool-btn" onclick="document.getElementById('loadFile').click()" style="margin: 0;">데이터
-                    불러오기</button>
-                <input type="file" id="loadFile" accept=".json" style="display: none;" onchange="loadDocument(event)">
-                <button class="tool-btn primary" onclick="printDocument()" style="margin: 12px 0 0 0;">PDF 다운로드 /
-                    인쇄</button>
+            <div class="toolbar-row">
+                <span style="display:inline-block; width:10px;"></span>
+                <button class="format-btn" onclick="formatDoc('justifyFull')" title="양쪽 정렬">양쪽</button>
+                <button class="format-btn" onclick="formatDoc('justifyCenter')" title="중앙 정렬">중앙</button>
+                <button class="format-btn" onclick="formatDoc('justifyRight')" title="우측 정렬">우측</button>
             </div>
+
+            <div class="toolbar-row">
+                <input type="number" id="tableRows" value="3" min="1" max="20" style="width: 35px; text-align: center;"
+                    title="행">
+                <span style="font-size: 11px; color: #666;">×</span>
+                <input type="number" id="tableCols" value="3" min="1" max="10" style="width: 35px; text-align: center;"
+                    title="열">
+                <button class="format-btn" onclick="insertTable()"
+                    style="width: auto; padding: 0 8px; font-size: 11px; font-weight: bold;">생성</button>
+
+                <span style="display:inline-block; width:15px;"></span>
+
+                <button class="color-btn" onclick="setCellColor('#ffffff')"
+                    style="background: #ffffff; border: 1px solid #ddd;" title="배경 흰색"></button>
+                <button class="color-btn" onclick="setCellColor('#fff7ed')" style="background: #fff7ed;"
+                    title="배경 연주황"></button>
+                <button class="color-btn" onclick="setCellColor('#f0fdf4')" style="background: #f0fdf4;"
+                    title="배경 연초록"></button>
+                <button class="color-btn" onclick="setCellColor('#f1f5f9')" style="background: #f1f5f9;"
+                    title="배경 회색"></button>
+            </div>
+        </div>
+
+        <hr style="border: none; border-top: 1px solid var(--border-color);">
+
+        <h2>항목 추가</h2>
+        <button class="tool-btn" onclick="addHeaderItem()">+ 상단부 항목 추가</button>
+        <button class="tool-btn" onclick="addBodySection()">+ 본문 섹션 추가</button>
+
+        <hr style="border: none; border-top: 1px solid var(--border-color);">
+
+        <h2>페이지 관리</h2>
+        <button class="tool-btn" onclick="addPage()">+ 페이지 추가</button>
+        <button class="tool-btn" onclick="deleteLastPage()">- 페이지 삭제</button>
+
+        <hr style="border: none; border-top: 1px solid var(--border-color);">
+
+        <h2>문서 관리</h2>
+        <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px;">
+            <button class="tool-btn" onclick="saveDocument()" style="margin: 0;">데이터 저장 (.json)</button>
+            <button class="tool-btn" onclick="document.getElementById('loadFile').click()" style="margin: 0;">데이터
+                불러오기</button>
+            <input type="file" id="loadFile" accept=".json" style="display: none;" onchange="loadDocument(event)">
+            <button class="tool-btn primary" onclick="printDocument()" style="margin: 12px 0 0 0;">PDF 다운로드 /
+                인쇄</button>
+        </div>
     </aside>
 
     <main class="preview-container">
