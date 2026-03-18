@@ -221,11 +221,11 @@ function saveDocument() {
     const a = document.createElement('a');
     a.href = url;
     a.download = `공문_${new Date().toISOString().slice(0, 10)}.json`;
-    
+
     // Append to body for mobile browser compatibility
     document.body.appendChild(a);
     a.click();
-    
+
     // Cleanup
     setTimeout(() => {
         document.body.removeChild(a);

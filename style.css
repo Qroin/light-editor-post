@@ -1,5 +1,7 @@
 :root {
+    /* Prevent browser-forced dark mode */
     color-scheme: light;
+
     /* UI Palette */
     --editor-bg: #f1f5f9;
     --sidebar-bg: #ffffff;
@@ -44,7 +46,8 @@ body {
     flex-direction: column;
     gap: 20px;
     overflow-y: auto;
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
+    /* Smooth scrolling on iOS */
     box-shadow: 4px 0 15px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease;
     z-index: 1000;
@@ -73,7 +76,8 @@ body {
     font-size: 1.5rem;
     box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
     transition: all 0.2s;
-    display: none; /* Hidden on desktop by default unless specifically needed */
+    display: none;
+    /* Hidden on desktop by default unless specifically needed */
 }
 
 .sidebar-toggle:hover {
@@ -202,7 +206,8 @@ input[type="range"]::-webkit-slider-thumb {
 .toolbar-row {
     display: flex;
     align-items: center;
-    justify-content: center; /* Center horizontally */
+    justify-content: center;
+    /* Center horizontally */
     gap: 8px;
     flex-wrap: wrap;
 }
@@ -477,7 +482,8 @@ input[type="range"]::-webkit-slider-thumb {
         height: 100%;
         transform: translateX(-100%);
         z-index: 1000;
-        width: 300px; /* Slimmer on mobile */
+        width: 300px;
+        /* Slimmer on mobile */
     }
 
     .sidebar.open {
@@ -485,7 +491,8 @@ input[type="range"]::-webkit-slider-thumb {
     }
 
     .sidebar-toggle {
-        display: flex; /* Show toggle button on mobile */
+        display: flex;
+        /* Show toggle button on mobile */
     }
 
     .preview-container {
@@ -496,9 +503,10 @@ input[type="range"]::-webkit-slider-thumb {
     #document-wrapper {
         transform-origin: top center;
         /* Mobile Scaling: Adjust zoom to fit screen width */
-        zoom: 0.45; /* A bit small, but ensures visibility. Alternatively use transform: scale() */
+        zoom: 0.45;
+        /* A bit small, but ensures visibility. Alternatively use transform: scale() */
     }
-    
+
     /* If zoom is not supported well, fallback/alternative */
     @supports not (zoom: 0.5) {
         #document-wrapper {
@@ -514,6 +522,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 @media print {
+
     /* Set page size to A4 and remove browser margins */
     @page {
         size: A4;
@@ -557,6 +566,7 @@ input[type="range"]::-webkit-slider-thumb {
         gap: 0 !important;
         padding: 0 !important;
         margin: 0 !important;
+        /* Reset mobile scaling for print */
         zoom: 1 !important;
         transform: none !important;
     }
