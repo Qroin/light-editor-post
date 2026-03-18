@@ -1,4 +1,5 @@
 :root {
+    color-scheme: light;
     /* UI Palette */
     --editor-bg: #f1f5f9;
     --sidebar-bg: #ffffff;
@@ -201,6 +202,7 @@ input[type="range"]::-webkit-slider-thumb {
 .toolbar-row {
     display: flex;
     align-items: center;
+    justify-content: center; /* Center horizontally */
     gap: 8px;
     flex-wrap: wrap;
 }
@@ -238,11 +240,13 @@ input[type="range"]::-webkit-slider-thumb {
     border: 2px solid white;
     cursor: pointer;
     box-shadow: 0 0 0 1px var(--border-color);
-    transition: transform 0.1s;
+    transition: all 0.2s;
+    flex-shrink: 0;
 }
 
 .color-btn:hover {
-    transform: scale(1.2);
+    transform: scale(1.15);
+    box-shadow: 0 0 0 1px var(--accent);
 }
 
 /* Preview Area */
@@ -553,6 +557,8 @@ input[type="range"]::-webkit-slider-thumb {
         gap: 0 !important;
         padding: 0 !important;
         margin: 0 !important;
+        zoom: 1 !important;
+        transform: none !important;
     }
 
     /* Enforce strict A4 pages */

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
     <title>light-editor-post</title>
     <link rel="stylesheet" href="style.css">
     <link
@@ -74,21 +75,19 @@
                 <button class="format-btn" onclick="formatDoc('underline')" title="밑줄">U</button>
                 <button class="format-btn" onclick="formatDoc('italic')" title="기울임">I</button>
                 <button class="format-btn" onclick="formatDoc('insertUnorderedList')" title="리스트">•</button>
-
-                <span style="display:inline-block; width:3px;"></span>
-
+            </div>
+            <div class="toolbar-row">
                 <button class="color-btn" onclick="formatDoc('foreColor', '#000000')" style="background: #000000;"
                     title="글자 검정"></button>
-                <button class="color-btn" onclick="formatDoc('foreColor', '#ff0000')" style="background: #ff0000;"
+                <button class="color-btn" onclick="formatDoc('foreColor', '#ff4444')" style="background: #ff4444;"
                     title="글자 빨강"></button>
-                <button class="color-btn" onclick="formatDoc('foreColor', '#0000ff')" style="background: #0000ff;"
+                <button class="color-btn" onclick="formatDoc('foreColor', '#2563eb')" style="background: #2563eb;"
                     title="글자 파랑"></button>
-                <button class="color-btn" onclick="formatDoc('foreColor', '#808080')" style="background: #808080;"
+                <button class="color-btn" onclick="formatDoc('foreColor', '#64748b')" style="background: #64748b;"
                     title="글자 회색"></button>
             </div>
 
             <div class="toolbar-row">
-                <span style="display:inline-block; width:10px;"></span>
                 <button class="format-btn" onclick="formatDoc('justifyFull')" title="양쪽 정렬">양쪽</button>
                 <button class="format-btn" onclick="formatDoc('justifyCenter')" title="중앙 정렬">중앙</button>
                 <button class="format-btn" onclick="formatDoc('justifyRight')" title="우측 정렬">우측</button>
@@ -103,10 +102,10 @@
                 <button class="format-btn" onclick="insertTable()"
                     style="width: auto; padding: 0 8px; font-size: 11px; font-weight: bold;">생성</button>
 
-                <span style="display:inline-block; width:15px;"></span>
-
-                <button class="color-btn" onclick="setCellColor('#ffffff')"
-                    style="background: #ffffff; border: 1px solid #ddd;" title="배경 흰색"></button>
+            </div>
+            <div class="toolbar-row">
+                <button class="color-btn" onclick="setCellColor('#ffffff')" style="background: #ffffff;"
+                    title="배경 흰색"></button>
                 <button class="color-btn" onclick="setCellColor('#fff7ed')" style="background: #fff7ed;"
                     title="배경 연주황"></button>
                 <button class="color-btn" onclick="setCellColor('#f0fdf4')" style="background: #f0fdf4;"
