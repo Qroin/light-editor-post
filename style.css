@@ -43,6 +43,7 @@ body {
     flex-direction: column;
     gap: 20px;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
     box-shadow: 4px 0 15px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease;
     z-index: 1000;
@@ -447,8 +448,68 @@ input[type="range"]::-webkit-slider-thumb {
     box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
 }
 
-@media print {
 
+/* Media Print Block placeholder removed for reordering */
+
+.page-footer {
+    position: absolute;
+    bottom: 20mm;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 11pt;
+    color: #000;
+    font-weight: bold;
+    pointer-events: none;
+    z-index: 100;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        transform: translateX(-100%);
+        z-index: 1000;
+        width: 300px; /* Slimmer on mobile */
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .sidebar-toggle {
+        display: flex; /* Show toggle button on mobile */
+    }
+
+    .preview-container {
+        padding: 80px 10px 40px 10px;
+        overflow-x: auto;
+    }
+
+    #document-wrapper {
+        transform-origin: top center;
+        /* Mobile Scaling: Adjust zoom to fit screen width */
+        zoom: 0.45; /* A bit small, but ensures visibility. Alternatively use transform: scale() */
+    }
+    
+    /* If zoom is not supported well, fallback/alternative */
+    @supports not (zoom: 0.5) {
+        #document-wrapper {
+            transform: scale(0.45);
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    #document-wrapper {
+        zoom: 0.35;
+    }
+}
+
+@media print {
     /* Set page size to A4 and remove browser margins */
     @page {
         size: A4;
@@ -514,63 +575,5 @@ input[type="range"]::-webkit-slider-thumb {
         position: absolute !important;
         bottom: 20mm !important;
         display: block !important;
-    }
-}
-
-.page-footer {
-    position: absolute;
-    bottom: 20mm;
-    left: 0;
-    right: 0;
-    text-align: center;
-    font-size: 11pt;
-    color: #000;
-    font-weight: bold;
-    pointer-events: none;
-    z-index: 100;
-}
-
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-    .sidebar {
-        position: fixed;
-        left: 0;
-        top: 0;
-        height: 100%;
-        transform: translateX(-100%);
-        z-index: 1000;
-        width: 300px; /* Slimmer on mobile */
-    }
-
-    .sidebar.open {
-        transform: translateX(0);
-    }
-
-    .sidebar-toggle {
-        display: flex; /* Show toggle button on mobile */
-    }
-
-    .preview-container {
-        padding: 80px 10px 40px 10px;
-        overflow-x: auto;
-    }
-
-    #document-wrapper {
-        transform-origin: top center;
-        /* Mobile Scaling: Adjust zoom to fit screen width */
-        zoom: 0.45; /* A bit small, but ensures visibility. Alternatively use transform: scale() */
-    }
-    
-    /* If zoom is not supported well, fallback/alternative */
-    @supports not (zoom: 0.5) {
-        #document-wrapper {
-            transform: scale(0.45);
-        }
-    }
-}
-
-@media (max-width: 480px) {
-    #document-wrapper {
-        zoom: 0.35;
     }
 }

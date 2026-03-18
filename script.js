@@ -221,8 +221,23 @@ function saveDocument() {
     const a = document.createElement('a');
     a.href = url;
     a.download = `공문_${new Date().toISOString().slice(0, 10)}.json`;
+    
+    // Append to body for mobile browser compatibility
+    document.body.appendChild(a);
     a.click();
-    URL.revokeObjectURL(url);
+    
+    // Cleanup
+    setTimeout(() => {
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }, 100);
+}
+
+function printDocument() {
+    // Small delay to ensure any open UI (like sidebar) is ready or to avoid mobile browser blocks
+    setTimeout(() => {
+        window.print();
+    }, 200);
 }
 
 function loadDocument(event) {
